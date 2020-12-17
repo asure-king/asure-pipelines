@@ -1,0 +1,11 @@
+pipeline {
+    agent { label 'asure-hq' }
+
+    stages {
+        stage('Snapshot Ondemand Apply') {
+            steps {
+                sh 'gcloud compute disks snapshot asure-hq --zone us-east1-b'
+            }
+        }
+    }
+}
