@@ -1,0 +1,17 @@
+pipeline {
+    agent { label "asure-hq" }
+    
+    stages {
+        stage("Machine-Image List"){
+            steps{
+                sh 'gcloud beta compute machine-images list'
+            }
+
+        }
+        stage("Machine-Image Create Apply") {
+            steps {
+                sh 'gcloud beta compute machine-images create asure-hq-machimage --source-instance asure-hq --source-instance-zone us-east1-b'
+            }
+        }
+    }
+}
